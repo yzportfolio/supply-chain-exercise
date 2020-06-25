@@ -9,13 +9,18 @@ pragma solidity ^0.5.0;
 contract SupplyChain {
 
   /* set owner */
-  address owner;
+  address public owner  = msg.sender(address,payable);
 
   /* Add a variable called skuCount to track the most recent sku # */
+  constructor() public {
+  skuCount = msg.sender;
+  }
 
   /* Add a line that creates a public mapping that maps the SKU (a number) to an Item.
      Call this mappings items
   */
+  contract SKU{
+     mapping (address => uint) public SKU(string);
 
   /* Add a line that creates an enum called State. This should have 4 states
     ForSale
@@ -24,6 +29,12 @@ contract SupplyChain {
     Received
     (declaring them in this order is important for testing)
   */
+public enum SKU {
+    ForSale;
+    Sold;
+    Shipped;
+    Received;
+    }
 
   /* Create a struct named Item.
     Here, add a name, sku, price, state, seller, and buyer
@@ -31,11 +42,21 @@ contract SupplyChain {
     if you need help you can ask around :)
     Be sure to add "payable" to addresses that will be handling value transfer
   */
+   enum ForSale{name,sku,price,state,seller,byer};
+   enum Sold{name,sku,price,state,seller,byer};
+   enum Shipped{name,sku,price,state,seller,byer};
+   enum Recieved{name,sku,price,state,seller,byer};
+   address payable SKU = address (string);
+   address myAddress = address(this);
+
 
   /* Create 4 events with the same name as each possible State (see above)
     Prefix each event with "Log" for clarity, so the forSale event will be called "LogForSale"
     Each event should accept one argument, the sku */
-
+event LogForSale(sku);
+event LogSold(sku);
+event LogShipped(sku);
+event LogRecieved(sku);
 /* Create a modifer that checks if the msg.sender is the owner of the contract */
 
   modifier verifyCaller (address _address) { require (msg.sender == _address); _;}
